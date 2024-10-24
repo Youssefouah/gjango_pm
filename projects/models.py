@@ -24,8 +24,10 @@ class Projects(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    Category = models.ForeignKey(Category,on_delete=models.PROTECT)
-    user = models.ForeignKey(AUTH_USER_MODEL,on_delete=models.CASCADE)
+    category = models.ForeignKey(Category,on_delete=models.PROTECT)
+    user = models.ForeignKey(AUTH_USER_MODEL
+                             ,on_delete=models.CASCADE,
+                             null=True)
 
     def __str__(self):
         return self.title
