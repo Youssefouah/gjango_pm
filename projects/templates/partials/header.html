@@ -20,7 +20,13 @@
             {{user.username}}
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">{% trans "Profile" %}</a></li>
+            <li>
+              <form method="post" action="{% url 'profile' %}">
+                {% csrf_token %}
+                <button type="submit" class="dropdown-item">{% trans 'Profile' %}</button>
+              </form>
+            </li>
+            
             <li><hr class="dropdown-divider"></li>
             <li>
               <form method="post" action="{% url 'logout' %}">
@@ -45,6 +51,7 @@
                    </div> 
                 </form>
       {% else %}
+        <a class ='btn btn-outline-light m-1' href = {% url "Register" %}>{% trans "Register" %}</a>
         <a class ='btn btn-outline-light' href = {% url "login" %}>{% trans "Login" %}</a>
       {% endif %}
     </div>
